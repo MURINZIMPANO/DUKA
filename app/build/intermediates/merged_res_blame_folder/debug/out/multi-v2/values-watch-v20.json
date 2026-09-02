@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.duka.app-mergeDebugResources-69:/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "/home/codespace/.gradle/caches/8.12/transforms/c9de0c154f49458820f7db3bc117d578/transformed/appcompat-1.6.1/res/values-watch-v20/values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

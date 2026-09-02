@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000100000000000000000A /* DukaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000100000000000000000A /* DukaApp.swift */; };
+		AA000200000000000000000A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000200000000000000000A /* ContentView.swift */; };
+		AA000300000000000000000A /* DukaColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000300000000000000000A /* DukaColors.swift */; };
+		AA000400000000000000000A /* DukaFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000400000000000000000A /* DukaFonts.swift */; };
+		AA000500000000000000000A /* DukaComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000500000000000000000A /* DukaComponents.swift */; };
+		AA000600000000000000000A /* AuthNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000600000000000000000A /* AuthNavigationView.swift */; };
+		AA000700000000000000000A /* OwnerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000700000000000000000A /* OwnerTabView.swift */; };
+		AA000800000000000000000A /* EmployeeNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000800000000000000000A /* EmployeeNavigationView.swift */; };
+		AA000900000000000000000A /* ClientTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000900000000000000000A /* ClientTabView.swift */; };
+		AA001000000000000000000A /* OwnerSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB001000000000000000000A /* OwnerSignupView.swift */; };
+		AA001100000000000000000A /* EmployeeLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB001100000000000000000A /* EmployeeLoginView.swift */; };
+		AA001200000000000000000A /* ClientSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB001200000000000000000A /* ClientSignupView.swift */; };
+		AA001300000000000000000A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB001300000000000000000A /* SettingsView.swift */; };
+		AA001400000000000000000A /* SpeechRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB001400000000000000000A /* SpeechRecognitionService.swift */; };
+		AA001500000000000000000A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB001500000000000000000A /* NotificationService.swift */; };
+		AA001600000000000000000A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB001600000000000000000A /* Localizable.strings */; };
+		AA001700000000000000000A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB001700000000000000000A /* Assets.xcassets */; };
+		AA001800000000000000000A /* shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB001800000000000000000A /* shared.xcframework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CC000100000000000000000A /* DukaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB000100000000000000000A /* DukaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukaApp.swift; sourceTree = "<group>"; };
+		BB000200000000000000000A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BB000300000000000000000A /* DukaColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukaColors.swift; sourceTree = "<group>"; };
+		BB000400000000000000000A /* DukaFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukaFonts.swift; sourceTree = "<group>"; };
+		BB000500000000000000000A /* DukaComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukaComponents.swift; sourceTree = "<group>"; };
+		BB000600000000000000000A /* AuthNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationView.swift; sourceTree = "<group>"; };
+		BB000700000000000000000A /* OwnerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTabView.swift; sourceTree = "<group>"; };
+		BB000800000000000000000A /* EmployeeNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeNavigationView.swift; sourceTree = "<group>"; };
+		BB000900000000000000000A /* ClientTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTabView.swift; sourceTree = "<group>"; };
+		BB001000000000000000000A /* OwnerSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSignupView.swift; sourceTree = "<group>"; };
+		BB001100000000000000000A /* EmployeeLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeLoginView.swift; sourceTree = "<group>"; };
+		BB001200000000000000000A /* ClientSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSignupView.swift; sourceTree = "<group>"; };
+		BB001300000000000000000A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BB001400000000000000000A /* SpeechRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionService.swift; sourceTree = "<group>"; };
+		BB001500000000000000000A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		BB001600000000000000000A /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		BB001700000000000000000A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB001800000000000000000A /* shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared.xcframework; path = ../shared/build/XCFrameworks/debug/shared.xcframework; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD000300000000000000000A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA001800000000000000000A /* shared.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD000100000000000000000A = {
+			isa = PBXGroup;
+			children = (
+				DD000200000000000000000A /* iosApp */,
+				DD000900000000000000000A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DD000200000000000000000A /* iosApp */ = {
+			isa = PBXGroup;
+			children = (
+				BB000100000000000000000A /* DukaApp.swift */,
+				BB000200000000000000000A /* ContentView.swift */,
+				DD000300000000000000000B /* Theme */,
+				DD000400000000000000000B /* Components */,
+				DD000500000000000000000B /* Navigation */,
+				DD000600000000000000000B /* Screens */,
+				DD000700000000000000000B /* Platform */,
+				DD000800000000000000000B /* Resources */,
+				BB001700000000000000000A /* Assets.xcassets */,
+			);
+			path = iosApp;
+			sourceTree = "<group>";
+		};
+		DD000300000000000000000B /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				BB000300000000000000000A /* DukaColors.swift */,
+				BB000400000000000000000A /* DukaFonts.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		DD000400000000000000000B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BB000500000000000000000A /* DukaComponents.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		DD000500000000000000000B /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				BB000600000000000000000A /* AuthNavigationView.swift */,
+				BB000700000000000000000A /* OwnerTabView.swift */,
+				BB000800000000000000000A /* EmployeeNavigationView.swift */,
+				BB000900000000000000000A /* ClientTabView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		DD000600000000000000000B /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				DD000601000000000000000B /* Auth */,
+				DD000602000000000000000B /* Settings */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		DD000601000000000000000B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				BB001000000000000000000A /* OwnerSignupView.swift */,
+				BB001100000000000000000A /* EmployeeLoginView.swift */,
+				BB001200000000000000000A /* ClientSignupView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		DD000602000000000000000B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BB001300000000000000000A /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		DD000700000000000000000B /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				BB001400000000000000000A /* SpeechRecognitionService.swift */,
+				BB001500000000000000000A /* NotificationService.swift */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		DD000800000000000000000B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BB001600000000000000000A /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DD000900000000000000000A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC000100000000000000000A /* DukaApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EE000100000000000000000A /* DukaApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF000200000000000000000A /* Build configuration list for PBXNativeTarget "DukaApp" */;
+			buildPhases = (
+				DD001000000000000000000A /* Sources */,
+				DD000300000000000000000A /* Frameworks */,
+				DD001100000000000000000A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DukaApp;
+			productName = DukaApp;
+			productReference = CC000100000000000000000A /* DukaApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EE000000000000000000000A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					EE000100000000000000000A = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = FF000100000000000000000A /* Build configuration list for PBXProject "DukaApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DD000100000000000000000A;
+			productRefGroup = DD000900000000000000000A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EE000100000000000000000A /* DukaApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD001100000000000000000A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA001600000000000000000A /* Localizable.strings in Resources */,
+				AA001700000000000000000A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD001000000000000000000A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000100000000000000000A /* DukaApp.swift in Sources */,
+				AA000200000000000000000A /* ContentView.swift in Sources */,
+				AA000300000000000000000A /* DukaColors.swift in Sources */,
+				AA000400000000000000000A /* DukaFonts.swift in Sources */,
+				AA000500000000000000000A /* DukaComponents.swift in Sources */,
+				AA000600000000000000000A /* AuthNavigationView.swift in Sources */,
+				AA000700000000000000000A /* OwnerTabView.swift in Sources */,
+				AA000800000000000000000A /* EmployeeNavigationView.swift in Sources */,
+				AA000900000000000000000A /* ClientTabView.swift in Sources */,
+				AA001000000000000000000A /* OwnerSignupView.swift in Sources */,
+				AA001100000000000000000A /* EmployeeLoginView.swift in Sources */,
+				AA001200000000000000000A /* ClientSignupView.swift in Sources */,
+				AA001300000000000000000A /* SettingsView.swift in Sources */,
+				AA001400000000000000000A /* SpeechRecognitionService.swift in Sources */,
+				AA001500000000000000000A /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FF000300000000000000000A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duka.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FF000400000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duka.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FF000500000000000000000A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FF000600000000000000000A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF000200000000000000000A /* Build configuration list for PBXNativeTarget "DukaApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF000300000000000000000A /* Debug */,
+				FF000400000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF000100000000000000000A /* Build configuration list for PBXProject "DukaApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF000500000000000000000A /* Debug */,
+				FF000600000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = EE000000000000000000000A /* Project object */;
+}

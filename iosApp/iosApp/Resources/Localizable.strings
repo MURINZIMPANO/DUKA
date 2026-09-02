@@ -1,0 +1,78 @@
+/* English localization */
+
+/* Auth */
+"welcome.title" = "Welcome to Duka";
+"welcome.subtitle" = "How would you like to use Duka?";
+"role.owner" = "Business Owner";
+"role.owner.desc" = "Manage your shop";
+"role.employee" = "Employee";
+"role.employee.desc" = "Access your account";
+"role.client" = "Shopper";
+"role.client.desc" = "Discover and shop";
+
+/* Auth - Forms */
+"signup.title" = "Create Your Shop";
+"signup.name" = "Full Name";
+"signup.phone" = "Phone or Email";
+"signup.password" = "Password";
+"signup.business.name" = "Business Name";
+"signup.business.type" = "Business Type";
+"signup.employee.count" = "Employees";
+"signup.language" = "Language";
+"signup.district" = "District";
+"signup.create" = "Create Account";
+
+"login.employee" = "Employee Login";
+"login.employee.code" = "Employee Code";
+"login.employee.login" = "Log In";
+"login.employee.owner" = "I'm a business owner";
+
+/* Navigation */
+"tab.dashboard" = "Dashboard";
+"tab.products" = "Products";
+"tab.tax" = "Tax";
+"tab.chat" = "Chat";
+"tab.more" = "More";
+"tab.discover" = "Discover";
+"tab.spending" = "Spending";
+"tab.feedback" = "Feedback";
+"tab.sell" = "Sell";
+
+/* Dashboard */
+"dashboard.sales.today" = "Today's Sales";
+"dashboard.products" = "Products";
+"dashboard.employees" = "Employees";
+"dashboard.low.stock" = "Low Stock";
+"dashboard.quick.add" = "Add Product";
+"dashboard.quick.voice" = "Voice Add";
+"dashboard.quick.analytics" = "Analytics";
+"dashboard.quick.alerts" = "Alerts";
+
+/* Products */
+"products.title" = "Inventory";
+"products.add" = "Add Product";
+"products.name" = "Product Name";
+"products.price" = "Price (RWF)";
+"products.stock" = "Stock Quantity";
+"products.category" = "Category";
+
+/* Tax */
+"tax.title" = "Tax & EBM";
+"tax.status" = "Tax Status";
+"tax.exempt" = "Exempt";
+
+/* Settings */
+"settings.title" = "Settings";
+"settings.account" = "Account";
+"settings.appearance" = "Appearance";
+"settings.theme" = "Theme";
+"settings.language" = "Language";
+"settings.notifications" = "Notifications";
+"settings.about" = "About";
+"settings.logout" = "Log out";
+"settings.logout.confirm" = "Log out of Duka?";
+"settings.version" = "Version";
+
+/* Common */
+"error.fill.all" = "Please fill in all fields";
+"loading" = "Loading...";

@@ -1,0 +1,72 @@
+name: Build iOS Simulator IPA
+
+on:
+  push:
+    branches: [main, develop]
+  workflow_dispatch:   # allows manual trigger from GitHub website
+
+jobs:
+  build-ios-ipa:
+    name: Build iOS Simulator IPA
+    runs-on: macos-14   # Apple Silicon Mac — required for iOS builds
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'microsoft'
+          cache: gradle
+
+      - name: Grant Gradle execute permission
+        run: chmod +x gradlew
+
+      - name: Build shared XCFramework
+        run: ./gradlew :shared:assembleSharedXCFramework
+
+      - name: Select Xcode 15
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+
+      - name: Build for iOS Simulator
+        run: |
+          xcodebuild build \
+            -project iosApp/DukaApp.xcodeproj \
+            -scheme DukaApp \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/ios-simulator \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+
+      - name: Package IPA
+        run: |
+          APP_PATH=$(find build/ios-simulator -name "DukaApp.app" -type d | head -1)
+          echo "Packaging: $APP_PATH"
+          mkdir -p build/ipa-package/Payload
+          cp -r "$APP_PATH" build/ipa-package/Payload/DukaApp.app
+          cd build/ipa-package
+          zip -r ../DukaApp-simulator.ipa Payload/
+          cd ../..
+          ls -lh build/DukaApp-simulator.ipa
+
+      - name: Upload IPA as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Duka-iOS-Simulator-IPA
+          path: build/DukaApp-simulator.ipa
+          retention-days: 30
+
+      # Also rebuild Android APK in same run so both are always in sync
+      - name: Build Android APK
+        run: ./gradlew :app:assembleDebug
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Duka-Android-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30

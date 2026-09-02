@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.duka.app-mergeDebugResources-69:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/home/codespace/.gradle/caches/8.12/transforms/c9de0c154f49458820f7db3bc117d578/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "/home/codespace/.gradle/caches/8.12/transforms/48ce2cd0047ec8e4b31093fe05c403d0/transformed/core-1.12.0/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        }
+    ]
+}

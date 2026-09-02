@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Revenir à l\'accueil"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Revenir en haut de la page"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Autres options"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"OK"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Tout afficher"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Sélectionner une application"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"NON"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"OUI"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"supprimer"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"entrée"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Fonction+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Méta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Maj+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"espace"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Rechercher…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Effacer la requête"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Requête de recherche"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Rechercher"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Envoyer la requête"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Recherche vocale"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Partager avec"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Partager avec <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Réduire"</string>
+    <string name="add_product_recent">Récemment ajoutés</string>
+    <string name="add_product_save">Enregistrer le produit</string>
+    <string name="add_product_saved">\u2713 Produit enregistré</string>
+    <string name="add_product_title">Ajouter un produit</string>
+    <string name="app_name">Duka</string>
+    <string name="back">Retour</string>
+    <string msgid="6128938260108474660" name="bottom_sheet_collapse_description">"Réduire la bottom sheet"</string>
+    <string msgid="1918297411568599192" name="bottom_sheet_dismiss_description">"Fermer la bottom sheet"</string>
+    <string msgid="7772321844937772780" name="bottom_sheet_drag_handle_description">"Poignée de déplacement"</string>
+    <string msgid="4324434199045499117" name="bottom_sheet_expand_description">"Développer la bottom sheet"</string>
+    <string name="budget_near_limit">Vous approchez de la limite de votre budget hebdomadaire.</string>
+    <string name="budget_no_purchases">Aucun achat pour l\'instant. Commencez à acheter pour suivre vos dépenses.</string>
+    <string name="budget_of">sur</string>
+    <string name="budget_over_limit">Vous avez dépassé votre budget hebdomadaire.</string>
+    <string name="budget_percent_used">%1$.0f%% du budget hebdomadaire utilisé</string>
+    <string name="budget_recent_purchases">Achats récents</string>
+    <string name="budget_title">Mon budget</string>
+    <string name="budget_weekly">Budget hebdomadaire</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Répondre"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Vidéo"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Refuser"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Raccrocher"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Appel entrant"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Appel en cours"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Filtrage d\'un appel entrant"</string>
+    <string name="cat_beverages">Boissons</string>
+    <string name="cat_electronics">Électronique</string>
+    <string name="cat_food">Alimentation</string>
+    <string name="cat_household">Ménager</string>
+    <string name="cat_personal_care">Soins personnels</string>
+    <string name="chat_empty">Aucun message pour l\'instant</string>
+    <string name="chat_empty_hint">Envoyez un message pour commencer la conversation</string>
+    <string name="chat_input_hint">Tapez un message…</string>
+    <string name="chat_send">Envoyer le message</string>
+    <string name="chat_title">Discussion</string>
+    <string name="client_ebm_received">Reçu \u00b7 %1$ds</string>
+    <string name="client_ebm_receiving">Réception…</string>
+    <string msgid="406453423630273620" name="close_drawer">"Fermer le menu de navigation"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Fermer la feuille"</string>
+    <string msgid="5389587048670450460" name="collapsed">"Réduit"</string>
+    <string name="credit_coming_soon">Bientôt disponible</string>
+    <string name="credit_coming_soon_desc">Bientôt disponible \u2014 aucun partenaire de prêt n\'est encore intégré. Votre score de crédit sera partagé avec les prêteurs vérifiés une fois les partenariats établis.</string>
+    <string name="credit_computing">Calcul de votre score de crédit…</string>
+    <string name="credit_drivers">Facteurs influençant votre score</string>
+    <string name="credit_lending_partner">Se connecter à un partenaire de prêt</string>
+    <string name="credit_title">Évaluation de crédit</string>
+    <string name="credit_your_score">Votre score de crédit</string>
+    <string name="dashboard_no_sales">Aucune vente aujourd\'hui. Commencez à vendre pour voir vos produits phares !</string>
+    <string name="dashboard_notifications">Notifications</string>
+    <string name="dashboard_offline_ready">Hors ligne</string>
+    <string name="dashboard_products_sold">Produits vendus</string>
+    <string name="dashboard_this_month">Ce mois-ci</string>
+    <string name="dashboard_today_income">Revenus du jour</string>
+    <string name="dashboard_top_products">Produits phares du jour</string>
+    <string name="dashboard_vs_yesterday">%1$s%% vs hier</string>
+    <string msgid="3499643850558715142" name="date_input_headline">"Date saisie"</string>
+    <string msgid="8562356184193964298" name="date_input_headline_description">"Date saisie : %1$s"</string>
+    <string msgid="5281836720766682161" name="date_input_invalid_for_pattern">"La date ne correspond pas au format attendu : %1$s"</string>
+    <string msgid="6114792992433444995" name="date_input_invalid_not_allowed">"Date non autorisée : %1$s"</string>
+    <string msgid="8434112129235255568" name="date_input_invalid_year_range">"Date hors de la plage d\'années attendue : %1$s - %2$s"</string>
+    <string msgid="5194825853981987218" name="date_input_label">"Date"</string>
+    <string msgid="5722931102250207748" name="date_input_no_input_description">"Aucune"</string>
+    <string msgid="3010396677286327048" name="date_input_title">"Sélectionner une date"</string>
+    <string msgid="2846784065735639969" name="date_picker_headline">"Date sélectionnée"</string>
+    <string msgid="4627306862713137085" name="date_picker_headline_description">"Sélection actuelle : %1$s"</string>
+    <string msgid="5152441868029453612" name="date_picker_navigate_to_year_description">"Accéder à l\'année %1$s"</string>
+    <string msgid="5724377114289981899" name="date_picker_no_selection_description">"Aucune"</string>
+    <string msgid="8911933542023210271" name="date_picker_scroll_to_earlier_years">"Faites défiler pour afficher les années précédentes"</string>
+    <string msgid="3226341140390493774" name="date_picker_scroll_to_later_years">"Faites défiler pour afficher les années suivantes"</string>
+    <string msgid="9029369254443419167" name="date_picker_switch_to_calendar_mode">"Passer au mode de saisie Agenda"</string>
+    <string msgid="145089358343568971" name="date_picker_switch_to_day_selection">"Balayez l\'écran pour sélectionner une année ou appuyez pour revenir à la sélection d\'un jour"</string>
+    <string msgid="1496750567914156598" name="date_picker_switch_to_input_mode">"Passer au mode de saisie Texte"</string>
+    <string msgid="8313783187901412102" name="date_picker_switch_to_next_month">"Passer au mois suivant"</string>
+    <string msgid="7596294429748914881" name="date_picker_switch_to_previous_month">"Passer au mois précédent"</string>
+    <string msgid="3412370019845183965" name="date_picker_switch_to_year_selection">"Passer à la sélection d\'une année"</string>
+    <string msgid="9208721003668059792" name="date_picker_title">"Sélectionner une date"</string>
+    <string msgid="4775802721403526937" name="date_picker_today_description">"Aujourd\'hui"</string>
+    <string msgid="8140324713311804736" name="date_picker_year_picker_pane_title">"Sélecteur d\'année visible"</string>
+    <string msgid="1891592555781755601" name="date_range_input_invalid_range_input">"Plage de dates non valide"</string>
+    <string msgid="2366412111888449406" name="date_range_input_title">"Saisir des dates"</string>
+    <string msgid="9048690781645835833" name="date_range_picker_day_in_range">"Dans la plage"</string>
+    <string msgid="4766270708882012148" name="date_range_picker_end_headline">"Date de fin"</string>
+    <string msgid="51495506931835470" name="date_range_picker_scroll_to_next_month">"Faites défiler pour afficher le mois suivant"</string>
+    <string msgid="4371570854614540700" name="date_range_picker_scroll_to_previous_month">"Faites défiler pour afficher le mois précédent"</string>
+    <string msgid="5759491386723090559" name="date_range_picker_start_headline">"Date de début"</string>
+    <string msgid="690080476639943577" name="date_range_picker_title">"Sélectionner des dates"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Données incorrectes"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Fenêtre pop-up"</string>
+    <string msgid="4057925834421392736" name="dialog">"Boîte de dialogue"</string>
+    <string name="discover_empty">Aucune boutique trouvée</string>
+    <string name="discover_km_away">%1$.1f km</string>
+    <string name="discover_search_hint">Rechercher des boutiques…</string>
+    <string name="discover_title">Découvrir les boutiques</string>
+    <string name="district_gasabo">Gasabo</string>
+    <string name="district_kicukiro">Kicukiro</string>
+    <string name="district_nyarugenge">Nyarugenge</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Menu déroulant"</string>
+    <string name="ebm_failed">Échoué \u00b7 %1$s</string>
+    <string name="ebm_sending">Envoi…</string>
+    <string name="ebm_sent">Envoyé \u00b7 %1$ds</string>
+    <string name="emp_login_back">Retour à la connexion</string>
+    <string name="emp_login_button">Se connecter comme employé</string>
+    <string name="emp_login_code_only_hint">Entrez votre code employé pour vous connecter</string>
+    <string name="emp_login_loading">Connexion…</string>
+    <string name="emp_login_owner_link">Je suis un propriétaire d\'entreprise</string>
+    <string name="emp_login_subtitle">Entrez votre code entreprise et nom</string>
+    <string name="emp_login_title">Connexion employé</string>
+    <string name="emp_mgmt_add">Ajouter un employé</string>
+    <string name="emp_mgmt_deactivated">Ce compte a été désactivé \u2014 contactez le propriétaire</string>
+    <string name="emp_mgmt_edit_role">Modifier le rôle</string>
+    <string name="emp_mgmt_empty">Aucun employé \u2014 ajoutez votre premier membre d\'équipe.</string>
+    <string name="emp_mgmt_eyebrow">Votre équipe</string>
+    <string name="emp_mgmt_no_active">Aucun employé actif avec ce code \u2014 vérifiez avec le propriétaire</string>
+    <string name="emp_mgmt_remove">Supprimer l\'employé</string>
+    <string name="emp_mgmt_title">Employés</string>
+    <string name="error_account_exists">Un compte avec ce numéro existe déjà</string>
+    <string name="error_account_not_found">Le compte n\'existe pas. Veuillez vous inscrire d\'abord.</string>
+    <string name="error_create_account_failed">Échec de la création du compte</string>
+    <string name="error_emp_login_failed">Échec de la connexion employé</string>
+    <string name="error_incorrect_password">Mot de passe incorrect</string>
+    <string name="error_invalid_employee_code">Code employé invalide. Vérifiez avec le propriétaire.</string>
+    <string name="error_login_failed">Échec de la connexion</string>
+    <string name="error_no_business">Aucune entreprise trouvée. Demandez au propriétaire de s\'inscrire d\'abord.</string>
+    <string name="error_password_too_short">Le mot de passe doit contenir au moins 6 caractères</string>
+    <string name="error_passwords_dont_match">Les mots de passe ne correspondent pas</string>
+    <string msgid="5974471714631304645" name="expanded">"Développé"</string>
+    <string name="feedback_anonymous">Soumettre anonymement</string>
+    <string name="feedback_category_price">Prix</string>
+    <string name="feedback_category_product">Qualité du produit</string>
+    <string name="feedback_category_service">Service</string>
+    <string name="feedback_heading">Partagez votre expérience</string>
+    <string name="feedback_note">Note : Les commentaires sont enregistrés localement dans cette phase. La transmission gouvernementale réelle n\'est pas implémentée.</string>
+    <string name="feedback_send">Envoyer le commentaire</string>
+    <string name="feedback_submitted">Commentaire soumis</string>
+    <string name="feedback_title">Envoyer un commentaire</string>
+    <string name="field_business_name">Nom de l\'entreprise</string>
+    <string name="field_business_name_feedback">Nom de l\'entreprise</string>
+    <string name="field_business_name_hint">ex. Kigali Fresh Mart</string>
+    <string name="field_business_name_hint_feedback">Quelle boutique ?</string>
+    <string name="field_business_type">Type d\'entreprise</string>
+    <string name="field_category">Catégorie</string>
+    <string name="field_confirm_password">Confirmer le mot de passe</string>
+    <string name="field_describe_hint">Que s\'est-il passé ? Qu\'attendiez-vous ?</string>
+    <string name="field_describe_issue">Décrivez le problème</string>
+    <string name="field_discount_hint">ex. 15</string>
+    <string name="field_discount_percent">Réduction %%</string>
+    <string name="field_district">District</string>
+    <string name="field_employee_code">Code employé</string>
+    <string name="field_employee_code_hint">ex. EMP-1234</string>
+    <string name="field_employee_name">Votre nom</string>
+    <string name="field_employee_name_hint">ex. Jean Niyomwungeri</string>
+    <string name="field_end_date">Date de fin (AAAA-MM-JJ)</string>
+    <string name="field_feedback_hint">Comment était votre expérience ?</string>
+    <string name="field_full_name">Nom complet</string>
+    <string name="field_full_name_hint">ex. Jean Niyomwungeri</string>
+    <string name="field_issue_category">Catégorie</string>
+    <string name="field_language">Langue</string>
+    <string name="field_password">Mot de passe</string>
+    <string name="field_password_hint">Au moins 6 caractères</string>
+    <string name="field_phone_hint">ex. 0788123456</string>
+    <string name="field_phone_or_email">Téléphone ou email</string>
+    <string name="field_price">Prix (RWF)</string>
+    <string name="field_price_hint">ex. 1500</string>
+    <string name="field_product_name">Nom du produit</string>
+    <string name="field_product_name_hint">ex. Sucre 1kg</string>
+    <string name="field_promo_title">Titre de la promo</string>
+    <string name="field_promo_title_hint">ex. Soldes du week-end</string>
+    <string name="field_quantity">Quantité</string>
+    <string name="field_start_date">Date de début (AAAA-MM-JJ)</string>
+    <string name="field_stock_hint">ex. 50</string>
+    <string name="field_stock_quantity">Quantité en stock</string>
+    <string name="field_wholesaler">Grossiste</string>
+    <string name="field_your_feedback">Votre commentaire</string>
+    <string name="filter_all">Tous</string>
+    <string name="filter_best_price">Meilleur prix</string>
+    <string name="filter_nearby">À proximité</string>
+    <string name="filter_top_rated">Mieux notées</string>
+    <string name="gov_adoption">Adoption de la plateforme</string>
+    <string name="gov_agriculture">Agriculture</string>
+    <string name="gov_complaints_title">Plaintes &amp; Suggestions</string>
+    <string name="gov_decision_queue">File d\'attente de décision</string>
+    <string name="gov_dismiss">Rejeter</string>
+    <string name="gov_early_warning">Alerte précoce</string>
+    <string name="gov_employees_added">5 employés ajoutés</string>
+    <string name="gov_est_annual">Impôt annuel estimé</string>
+    <string name="gov_external_purchases">Achats externes</string>
+    <string name="gov_highest_hiring">Embauches les plus élevées</string>
+    <string name="gov_local_sales">Ventes locales</string>
+    <string name="gov_needs_support">Ont le plus besoin d\'aide</string>
+    <string name="gov_no_alerts">Aucune alerte critique pour l\'instant. Toutes les entreprises fonctionnent normalement.</string>
+    <string name="gov_no_complaints">Aucune plainte ou suggestion pour l\'instant.</string>
+    <string name="gov_note">Note : La file d\'attente de décision est à des fins de démonstration uniquement. Aucune action d\'exécution réelle n\'est prise.</string>
+    <string name="gov_open">Ouvrir</string>
+    <string name="gov_open_issues">3 problèmes ouverts</string>
+    <string name="gov_pending">Kigali Fresh Mart \u2014 En attente</string>
+    <string name="gov_period_all">Tout le temps</string>
+    <string name="gov_period_quarter">Ce trimestre</string>
+    <string name="gov_period_year">Cette année</string>
+    <string name="gov_registered_biz">Entreprises enregistrées</string>
+    <string name="gov_retail">Commerce de détail</string>
+    <string name="gov_sector_growth">Croissance du secteur</string>
+    <string name="gov_sector_title">Vue du secteur</string>
+    <string name="gov_services">Services</string>
+    <string name="gov_source_comparison">Comparaison des sources de revenus</string>
+    <string name="gov_tax_review">Revue de conformité fiscale</string>
+    <string name="gov_tax_title">Moteur fiscal</string>
+    <string name="gov_tier_breakdown">Répartition des tranches de revenu</string>
+    <string name="gov_total_transactions">Transactions totales</string>
+    <string name="gov_total_turnover">Chiffre d\'affaires total</string>
+    <string msgid="6827826412747255547" name="in_progress">"En cours"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Partiellement coché"</string>
+    <string name="issue_infrastructure">Infrastructure</string>
+    <string name="issue_supply">Approvisionnement</string>
+    <string name="issue_tax_ebm">Impôts/EBM</string>
+    <string name="label_in_stock">%1$d en stock</string>
+    <string name="label_percent_off">%1$d%% de réduction</string>
+    <string name="label_price_rwf">RWF %1$s</string>
+    <string name="label_sold_count">%1$d vendus</string>
+    <string name="lang_english">Anglais</string>
+    <string name="lang_french">Français</string>
+    <string name="lang_kinyarwanda">Kinyarwanda</string>
+    <string name="login_button">Se connecter</string>
+    <string name="login_employee_link">J\'ai un code employé</string>
+    <string name="login_loading">Connexion…</string>
+    <string name="login_password_hint">Entrez votre mot de passe</string>
+    <string name="login_phone_hint">ex. 0788123456</string>
+    <string name="login_signup_link">Créer un compte entreprise</string>
+    <string name="login_title">Connectez-vous à votre entreprise</string>
+    <string name="logout">Déconnexion</string>
+    <string name="more_chat_subtitle">Messagez votre équipe</string>
+    <string name="more_credit_subtitle">Vérifiez votre score de crédit pour les prêts</string>
+    <string name="more_credit_title">Évaluation de crédit</string>
+    <string name="more_insights_section">Analyses</string>
+    <string name="more_promo_subtitle">Créez et gérez les promos</string>
+    <string name="more_report_subtitle">Obtenez de l\'aide pour les impôts, l\'approvisionnement ou l\'infrastructure</string>
+    <string name="more_restock_subtitle">Réordonner les produits en stock faible</string>
+    <string name="more_restock_title">Demander un réapprovisionnement</string>
+    <string name="more_roadmap_subtitle">Où va Duka</string>
+    <string name="more_roadmap_title">Feuille de route régionale</string>
+    <string name="more_supply_section">Réseau d\'approvisionnement</string>
+    <string name="more_title">Plus</string>
+    <string name="more_trending_subtitle">Voyez les entreprises les plus performantes</string>
+    <string name="more_trending_title">Boutiques tendance</string>
+    <string name="more_wholesaler_subtitle">Trouvez et connectez-vous aux grossistes</string>
+    <string name="more_wholesaler_title">Marché grossiste</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Menu de navigation"</string>
+    <string msgid="6610465462668679431" name="not_selected">"Non sélectionné"</string>
+    <string msgid="875452955155264703" name="off">"Désactivé"</string>
+    <string msgid="8655164131929253426" name="on">"Activé"</string>
+    <string name="products_empty">Aucun produit</string>
+    <string name="products_empty_hint">Appuyez sur + pour ajouter votre premier produit</string>
+    <string name="products_title">Produits</string>
+    <string name="promo_all_section">Toutes les promos</string>
+    <string name="promo_create">Créer une promotion</string>
+    <string name="promo_live_section">Promos en cours</string>
+    <string name="promo_publish">Publier la promo</string>
+    <string name="promo_published">\u2713 Promo publiée</string>
+    <string name="promo_title">Promotions</string>
+    <string msgid="5941395253238309765" name="range_end">"Fin de plage"</string>
+    <string msgid="7097486360902471446" name="range_start">"Début de plage"</string>
+    <string name="region_burundi">Burundi</string>
+    <string name="region_burundi_desc">Premières discussions avec le ministère du commerce.</string>
+    <string name="region_kenya">Kenya</string>
+    <string name="region_kenya_desc">Prévu au T2 2026. Adaptation pour la devise KES et l\'intégration M-Pesa.</string>
+    <string name="region_rwanda">Rwanda</string>
+    <string name="region_rwanda_desc">Accès complet aux fonctionnalités Duka \u2014 tableau de bord propriétaire, marketplace, réseau d\'approvisionnement et outils gouvernementaux.</string>
+    <string name="region_tanzania">Tanzanie</string>
+    <string name="region_tanzania_desc">Exploration de partenariats avec les associations commerciales locales.</string>
+    <string name="region_uganda">Ouganda</string>
+    <string name="region_uganda_desc">Prévu au T3 2026. Adaptation pour la devise UGX et MTN Mobile Money.</string>
+    <string name="register_back_to_login">Vous avez déjà un compte ? Connectez-vous</string>
+    <string name="register_business_details">Détails de l\'entreprise</string>
+    <string name="register_button">Créer un compte entreprise</string>
+    <string name="register_employee_count">Nombre d\'employés</string>
+    <string name="register_loading">Création…</string>
+    <string name="register_subtitle">Configurez votre boutique et commencez à vendre</string>
+    <string name="register_title">Créez votre entreprise</string>
+    <string name="register_your_details">Vos coordonnées</string>
+    <string name="report_attach_business">Joindre l\'identifiant de l\'entreprise</string>
+    <string name="report_heading">Quel est le problème ?</string>
+    <string name="report_note">Note : Les rapports sont enregistrés localement dans cette phase. La transmission gouvernementale réelle n\'est pas implémentée.</string>
+    <string name="report_send_button">Envoyer au canal gouvernemental</string>
+    <string name="report_status">Statut : En cours d\'examen. Enregistré localement.</string>
+    <string name="report_submitted">Rapport soumis</string>
+    <string name="report_title">Signaler un problème</string>
+    <string name="restock_all_stocked">Tous les produits sont bien approvisionnés. Aucun réapprovisionnement nécessaire.</string>
+    <string name="restock_low_stock">Produits en stock faible</string>
+    <string name="restock_recent">Demandes récentes</string>
+    <string name="restock_select_wholesaler">Sélectionner un grossiste</string>
+    <string name="restock_send_button">Envoyer la demande de réapprovisionnement</string>
+    <string name="restock_title">Demander un réapprovisionnement</string>
+    <string name="restock_units">%1$d unités</string>
+    <string name="roadmap_desc">Nous construisons un système d\'exploitation commercial pour l\'Afrique de l\'Est. Voici où nous en sommes et où nous allons.</string>
+    <string name="roadmap_heading">Où va Duka</string>
+    <string name="roadmap_title">Feuille de route régionale</string>
+    <string msgid="6420018528474762666" name="search_bar_search">"Rechercher"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Rechercher"</string>
+    <string msgid="6043586758067023" name="selected">"Sélectionné"</string>
+    <string name="sell_button">Vendu</string>
+    <string name="sell_logout">Déconnexion</string>
+    <string name="sell_ok">OK</string>
+    <string name="sell_search_hint">Rechercher des produits…</string>
+    <string name="sell_signed_in_as">Connecté en tant que %1$s</string>
+    <string name="sell_title">Vendre</string>
+    <string name="settings_about">À propos</string>
+    <string name="settings_account">Compte</string>
+    <string name="settings_anonymous_feedback">Feedback anonyme par défaut</string>
+    <string name="settings_app_version">Version de l\'application</string>
+    <string name="settings_appearance">Apparence</string>
+    <string name="settings_chat_notifications">Notifications de chat</string>
+    <string name="settings_clear_chat">Effacer l\'historique du chat</string>
+    <string name="settings_data_privacy">Données et confidentialité</string>
+    <string name="settings_manage_suggestions">Gérer mes suggestions</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_privacy">Confidentialité</string>
+    <string name="settings_profile">Profil</string>
+    <string name="settings_promotions">Promotions et offres</string>
+    <string name="settings_push_notifications">Notifications push</string>
+    <string name="settings_smart_suggestions">Suggestions intelligentes</string>
+    <string name="settings_sound">Son</string>
+    <string name="settings_theme">Thème</string>
+    <string name="settings_theme_dark">Sombre</string>
+    <string name="settings_theme_light">Clair</string>
+    <string name="settings_theme_system">Par défaut du système</string>
+    <string name="settings_title">Paramètres</string>
+    <string msgid="3962933905051144957" name="snackbar_dismiss">"Ignorer"</string>
+    <string name="source_business">Entreprise</string>
+    <string name="source_client">Client</string>
+    <string name="source_employee">Employé</string>
+    <string name="source_owner">Propriétaire</string>
+    <string name="splash_tagline">Votre boutique, simplifiée</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="status_coming_soon">Bientôt disponible</string>
+    <string name="status_delivered">Livré</string>
+    <string name="status_ended">Terminée</string>
+    <string name="status_in_transit">En transit</string>
+    <string name="status_live">En cours</string>
+    <string name="status_planned">Planifié</string>
+    <string name="status_requested">Demandé</string>
+    <string name="store_buy">Acheter</string>
+    <string name="store_buy_from">Acheter dans cette boutique</string>
+    <string name="store_confirm_purchase">Confirmer l\'achat</string>
+    <string name="store_in_stock">En stock</string>
+    <string name="store_mobile_money">Mobile Money \u2022\u2022\u2022\u2022 214</string>
+    <string name="store_out_of_stock">Rupture de stock</string>
+    <string name="store_payment_method">Moyen de paiement</string>
+    <string name="store_products">Produits</string>
+    <string name="store_suggestions">Vous aimerez aussi</string>
+    <string msgid="7189888345201419934" name="suggestions_available">"Suggestions ci-dessous"</string>
+    <string msgid="2561197295334830845" name="switch_role">"Changer"</string>
+    <string msgid="1672349317127674378" name="tab">"Onglet"</string>
+    <string name="tax_annual_turnover">Chiffre d\'affaires annuel</string>
+    <string name="tax_est_annual">Impôt annuel estimé</string>
+    <string name="tax_no_receipts">Aucun reçu EBM pour l\'instant. Les reçus sont générés après chaque vente.</string>
+    <string name="tax_recent_receipts">Reçus EBM récents</string>
+    <string name="tax_tier">Tranche d\'imposition</string>
+    <string name="tax_title">Impôts &amp; EBM</string>
+    <string name="tax_vat_quarterly">TVA perçue (trimestrielle)</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> pour cent."</string>
+    <string msgid="5096144640014509074" name="time_picker_am">"AM"</string>
+    <string msgid="7241191970823415723" name="time_picker_hour">"Heure"</string>
+    <string msgid="4149641012513526783" name="time_picker_hour_24h_suffix">"%1$d heures"</string>
+    <string msgid="6081676287789101196" name="time_picker_hour_selection">"Sélectionner une heure"</string>
+    <string msgid="6952032626122080528" name="time_picker_hour_suffix">"%1$d heures"</string>
+    <string msgid="5298761125390275834" name="time_picker_hour_text_field">"en heures"</string>
+    <string msgid="6116528647594005945" name="time_picker_minute">"Minute"</string>
+    <string msgid="8494777394375441602" name="time_picker_minute_selection">"Sélectionner des minutes"</string>
+    <string msgid="3206486707779478173" name="time_picker_minute_suffix">"%1$d minutes"</string>
+    <string msgid="994099543833979061" name="time_picker_minute_text_field">"en minutes"</string>
+    <string msgid="7352665290700284516" name="time_picker_period_toggle_description">"Sélectionner le format AM ou PM"</string>
+    <string msgid="2232702812657998674" name="time_picker_pm">"PM"</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"Info-bulle"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"Afficher l\'info-bulle"</string>
+    <string msgid="2732804537909054941" name="tooltip_long_press_label">"Afficher l\'info-bulle"</string>
+    <string msgid="8191239805703103845" name="tooltip_pane_description">"Info-bulle"</string>
+    <string name="trending_summary">Ventes régulières et forte satisfaction client</string>
+    <string name="trending_title">Boutiques tendance</string>
+    <string name="type_bakery">Boulangerie</string>
+    <string name="type_grocery">Épicerie</string>
+    <string name="type_other">Autre</string>
+    <string name="type_pharmacy">Pharmacie</string>
+    <string name="type_supermarket">Supermarché</string>
+    <string name="voice_add_title">Ajouter par voix</string>
+    <string name="voice_confirm_button">Confirmer et ajouter</string>
+    <string name="voice_confirm_title">Confirmer les détails du produit</string>
+    <string name="voice_listening">Écoute…</string>
+    <string name="voice_saved">\u2713 Produit enregistré avec succès</string>
+    <string name="voice_size_detail">Taille/détail : %1$s</string>
+    <string name="voice_start_input">Commencer la saisie vocale</string>
+    <string name="voice_stop">Arrêter l\'écoute</string>
+    <string name="voice_tap_mic">Appuyez sur le micro pour commencer</string>
+    <string name="voice_transcript">Transcription : "%1$s"</string>
+    <string name="voice_try_again">Réessayer</string>
+    <string name="wholesaler_delivery">Livraison : %1$s</string>
+    <string name="wholesaler_empty">Aucun grossiste trouvé</string>
+    <string name="wholesaler_search_hint">Rechercher des grossistes…</string>
+    <string name="wholesaler_title">Grossistes</string>
+</resources>

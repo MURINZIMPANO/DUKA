@@ -1,0 +1,561 @@
+-- Duka Database Schema — SQLDelight
+-- Table names and column names match the existing Room schema exactly
+-- to ensure data compatibility during migration.
+
+-- V1/V2 Core tables
+
+CREATE TABLE businesses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    employeeCount INTEGER NOT NULL,
+    language TEXT NOT NULL,
+    district TEXT NOT NULL,
+    createdAt INTEGER NOT NULL
+);
+
+CREATE TABLE products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    price REAL NOT NULL,
+    stockQuantity INTEGER NOT NULL,
+    category TEXT NOT NULL,
+    createdAt INTEGER NOT NULL,
+    isDeleted INTEGER NOT NULL DEFAULT 0,
+    costPrice INTEGER NOT NULL DEFAULT 0,
+    lowStockThreshold INTEGER NOT NULL DEFAULT 5
+);
+
+CREATE TABLE sales (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    productId INTEGER NOT NULL,
+    businessId INTEGER NOT NULL,
+    amount REAL NOT NULL,
+    timestamp INTEGER NOT NULL,
+    source TEXT NOT NULL
+);
+
+CREATE TABLE employees (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER NOT NULL,
+    userId INTEGER NOT NULL DEFAULT 0,
+    code TEXT NOT NULL,
+    name TEXT NOT NULL,
+    role TEXT NOT NULL DEFAULT 'cashier',
+    isActive INTEGER NOT NULL DEFAULT 1,
+    joinedAt INTEGER NOT NULL,
+    lastSeenAt INTEGER
+);
+
+CREATE TABLE chat_messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER NOT NULL,
+    senderRole TEXT NOT NULL,
+    senderLabel TEXT NOT NULL,
+    text TEXT NOT NULL,
+    timestamp INTEGER NOT NULL
+);
+
+CREATE TABLE promos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    discountPercent INTEGER NOT NULL,
+    startDate INTEGER NOT NULL,
+    endDate INTEGER NOT NULL,
+    isLive INTEGER NOT NULL DEFAULT 1
+);
+
+CREATE TABLE issue_reports (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER NOT NULL,
+    category TEXT NOT NULL,
+    message TEXT NOT NULL,
+    attachBusinessId INTEGER NOT NULL,
+    status TEXT NOT NULL DEFAULT 'Under review',
+    createdAt INTEGER NOT NULL
+);
+
+CREATE TABLE ebm_receipts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    saleId INTEGER NOT NULL,
+    receiptNumber TEXT NOT NULL,
+    status TEXT NOT NULL,
+    sentAt INTEGER NOT NULL
+);
+
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER,
+    fullName TEXT NOT NULL,
+    phoneOrEmail TEXT NOT NULL,
+    passwordHash TEXT NOT NULL,
+    role TEXT NOT NULL,
+    isDeleted INTEGER NOT NULL DEFAULT 0,
+    createdAt INTEGER NOT NULL
+);
+
+CREATE TABLE tax_profiles (
+    businessId INTEGER PRIMARY KEY NOT NULL,
+    quarterlyTurnover REAL NOT NULL,
+    tier TEXT NOT NULL,
+    vatCollected REAL NOT NULL
+);
+
+-- V3/V4 tables
+
+CREATE TABLE purchases (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    clientUserId INTEGER NOT NULL,
+    businessId INTEGER NOT NULL,
+    productId INTEGER NOT NULL,
+    amount REAL NOT NULL,
+    timestamp INTEGER NOT NULL,
+    receiptNumber TEXT NOT NULL DEFAULT ''
+);
+
+CREATE TABLE budget_goals (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    clientUserId INTEGER NOT NULL,
+    weeklyLimit REAL NOT NULL,
+    createdAt INTEGER NOT NULL
+);
+
+CREATE TABLE feedback_reports (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    clientUserId INTEGER NOT NULL,
+    targetBusinessId INTEGER NOT NULL,
+    category TEXT NOT NULL,
+    message TEXT NOT NULL,
+    isAnonymous INTEGER NOT NULL DEFAULT 0,
+    status TEXT NOT NULL DEFAULT 'Under review',
+    createdAt INTEGER NOT NULL
+);
+
+CREATE TABLE shop_ratings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER NOT NULL,
+    averageRating REAL NOT NULL,
+    ratingCount INTEGER NOT NULL
+);
+
+CREATE TABLE wholesalers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    name TEXT NOT NULL,
+    specialty TEXT NOT NULL,
+    rating REAL NOT NULL,
+    deliveryEstimate TEXT NOT NULL
+);
+
+CREATE TABLE restock_requests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER NOT NULL,
+    productId INTEGER NOT NULL,
+    wholesalerId INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    status TEXT NOT NULL DEFAULT 'requested',
+    requestedAt INTEGER NOT NULL
+);
+
+-- V5 tables
+
+CREATE TABLE stock_adjustments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    productId INTEGER NOT NULL,
+    businessId INTEGER NOT NULL,
+    delta INTEGER NOT NULL,
+    reason TEXT NOT NULL,
+    timestamp INTEGER NOT NULL
+);
+
+CREATE TABLE product_alerts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER NOT NULL,
+    productId INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    message TEXT NOT NULL,
+    severity TEXT NOT NULL,
+    isRead INTEGER NOT NULL DEFAULT 0,
+    createdAt INTEGER NOT NULL
+);
+
+CREATE TABLE app_notifications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    userId INTEGER NOT NULL,
+    businessId INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    actionRoute TEXT NOT NULL,
+    isRead INTEGER NOT NULL DEFAULT 0,
+    createdAt INTEGER NOT NULL
+);
+
+CREATE TABLE expenses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    businessId INTEGER NOT NULL,
+    label TEXT NOT NULL,
+    amount INTEGER NOT NULL,
+    periodStart INTEGER NOT NULL,
+    periodEnd INTEGER NOT NULL,
+    createdAt INTEGER NOT NULL
+);
+
+-- ── Queries ──
+
+-- Business
+selectAllBusinesses:
+SELECT * FROM businesses LIMIT 1;
+
+selectBusinessById:
+SELECT * FROM businesses WHERE id = ? LIMIT 1;
+
+insertBusiness:
+INSERT INTO businesses(name, type, employeeCount, language, district, createdAt)
+VALUES (?, ?, ?, ?, ?, ?);
+
+-- User
+selectUserById:
+SELECT * FROM users WHERE id = ?;
+
+selectUserByPhoneOrEmail:
+SELECT * FROM users WHERE phoneOrEmail = ? AND isDeleted = 0 LIMIT 1;
+
+selectEmployeesByBusiness:
+SELECT * FROM users WHERE businessId = ? AND role = 'employee';
+
+selectEmployeeByName:
+SELECT * FROM users WHERE businessId = ? AND role = 'employee' AND fullName = ? LIMIT 1;
+
+insertUser:
+INSERT INTO users(businessId, fullName, phoneOrEmail, passwordHash, role, isDeleted, createdAt)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+updateUserName:
+UPDATE users SET fullName = ? WHERE id = ?;
+
+softDeleteUser:
+UPDATE users SET isDeleted = 1 WHERE id = ?;
+
+-- Product
+selectProductsByBusiness:
+SELECT * FROM products WHERE businessId = ? AND isDeleted = 0 ORDER BY createdAt DESC;
+
+selectRecentProducts:
+SELECT * FROM products WHERE businessId = ? AND isDeleted = 0 ORDER BY createdAt DESC LIMIT 5;
+
+selectProductById:
+SELECT * FROM products WHERE id = ?;
+
+selectProductsByIds:
+SELECT * FROM products WHERE id IN ?;
+
+selectCategoriesByBusiness:
+SELECT DISTINCT category FROM products WHERE businessId = ? AND isDeleted = 0 ORDER BY category;
+
+selectAllActiveByBusiness:
+SELECT * FROM products WHERE businessId = ? AND isDeleted = 0;
+
+insertProduct:
+INSERT INTO products(businessId, name, price, stockQuantity, category, createdAt, isDeleted, costPrice, lowStockThreshold)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateProduct:
+UPDATE products SET name = ?, price = ?, stockQuantity = ?, category = ?, costPrice = ?, lowStockThreshold = ? WHERE id = ?;
+
+decrementStock:
+UPDATE products SET stockQuantity = stockQuantity - 1 WHERE id = ? AND stockQuantity > 0;
+
+incrementStock:
+UPDATE products SET stockQuantity = stockQuantity + ? WHERE id = ?;
+
+softDeleteProduct:
+UPDATE products SET isDeleted = 1 WHERE id = ?;
+
+-- Sale
+selectSaleById:
+SELECT * FROM sales WHERE id = ?;
+
+selectSalesInRange:
+SELECT * FROM sales WHERE businessId = ? AND timestamp >= ? AND timestamp < ?;
+
+selectTotalInRange:
+SELECT SUM(amount) FROM sales WHERE businessId = ? AND timestamp >= ? AND timestamp < ?;
+
+selectSalesCountInRange:
+SELECT COUNT(*) FROM sales WHERE businessId = ? AND timestamp >= ? AND timestamp < ?;
+
+selectTotalAllTime:
+SELECT SUM(amount) FROM sales WHERE businessId = ?;
+
+selectLatestSale:
+SELECT * FROM sales WHERE businessId = ? ORDER BY timestamp DESC LIMIT 1;
+
+selectAllByBusiness:
+SELECT * FROM sales WHERE businessId = ?;
+
+selectAllTimeTopProducts:
+SELECT productId, COUNT(*) AS cnt FROM sales WHERE businessId = ? GROUP BY productId ORDER BY cnt DESC;
+
+selectRevenueByCategory:
+SELECT p.category, SUM(s.amount) AS total
+FROM sales s INNER JOIN products p ON s.productId = p.id
+WHERE s.businessId = ? AND s.timestamp BETWEEN ? AND ?
+GROUP BY p.category;
+
+selectRevenueBySource:
+SELECT source, SUM(amount) AS total
+FROM sales WHERE businessId = ? AND timestamp BETWEEN ? AND ?
+GROUP BY source;
+
+insertSale:
+INSERT INTO sales(productId, businessId, amount, timestamp, source)
+VALUES (?, ?, ?, ?, ?);
+
+-- Employee
+selectEmployeesByBusinessEmp:
+SELECT * FROM employees WHERE businessId = ?;
+
+selectEmployeeByCode:
+SELECT * FROM employees WHERE businessId = ? AND code = ? LIMIT 1;
+
+selectActiveEmployeeByCode:
+SELECT * FROM employees WHERE code = ? AND isActive = 1 LIMIT 1;
+
+selectEmployeeByCodeAny:
+SELECT * FROM employees WHERE code = ? LIMIT 1;
+
+selectEmployeeById:
+SELECT * FROM employees WHERE id = ? LIMIT 1;
+
+updateEmployeeRole:
+UPDATE employees SET role = ? WHERE id = ?;
+
+updateEmployeeActive:
+UPDATE employees SET isActive = ? WHERE id = ?;
+
+updateEmployeeLastSeenAt:
+UPDATE employees SET lastSeenAt = ? WHERE id = ?;
+
+selectActiveEmployeeCount:
+SELECT COUNT(*) FROM employees WHERE businessId = ? AND isActive = 1;
+
+insertEmployee:
+INSERT INTO employees(businessId, userId, code, name, role, isActive, joinedAt, lastSeenAt)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteEmployee:
+DELETE FROM employees WHERE id = ?;
+
+-- ChatMessage
+insertChatMessage:
+INSERT INTO chat_messages(businessId, senderRole, senderLabel, text, timestamp)
+VALUES (?, ?, ?, ?, ?);
+
+selectChatMessages:
+SELECT * FROM chat_messages WHERE businessId = ? ORDER BY timestamp ASC;
+
+deleteClientMessages:
+DELETE FROM chat_messages WHERE businessId = ? AND senderRole = 'client';
+
+-- Promo
+insertPromo:
+INSERT INTO promos(businessId, title, discountPercent, startDate, endDate, isLive)
+VALUES (?, ?, ?, ?, ?, ?);
+
+selectPromosByBusiness:
+SELECT * FROM promos WHERE businessId = ? ORDER BY startDate DESC;
+
+selectLivePromos:
+SELECT * FROM promos WHERE businessId = ? AND isLive = 1;
+
+-- IssueReport
+insertIssueReport:
+INSERT INTO issue_reports(businessId, category, message, attachBusinessId, status, createdAt)
+VALUES (?, ?, ?, ?, ?, ?);
+
+selectReportsByBusiness:
+SELECT * FROM issue_reports WHERE businessId = ? ORDER BY createdAt DESC;
+
+-- EbmReceipt
+insertEbmReceipt:
+INSERT INTO ebm_receipts(saleId, receiptNumber, status, sentAt)
+VALUES (?, ?, ?, ?);
+
+selectReceiptBySaleId:
+SELECT * FROM ebm_receipts WHERE saleId = ?;
+
+selectReceiptsByBusiness:
+SELECT e.* FROM ebm_receipts e
+JOIN sales s ON e.saleId = s.id
+WHERE s.businessId = ?
+ORDER BY e.sentAt DESC;
+
+-- TaxProfile
+upsertTaxProfile:
+INSERT OR REPLACE INTO tax_profiles(businessId, quarterlyTurnover, tier, vatCollected)
+VALUES (?, ?, ?, ?);
+
+selectTaxProfile:
+SELECT * FROM tax_profiles WHERE businessId = ?;
+
+-- Purchase
+insertPurchase:
+INSERT INTO purchases(clientUserId, businessId, productId, amount, timestamp, receiptNumber)
+VALUES (?, ?, ?, ?, ?, ?);
+
+selectPurchasesByClient:
+SELECT * FROM purchases WHERE clientUserId = ? ORDER BY timestamp DESC;
+
+selectTotalSpentInRange:
+SELECT SUM(amount) FROM purchases WHERE clientUserId = ? AND timestamp >= ? AND timestamp < ?;
+
+selectTotalAllTimeClient:
+SELECT SUM(amount) FROM purchases WHERE clientUserId = ?;
+
+selectSpendingByCategory:
+SELECT p.category, SUM(pu.amount) AS total
+FROM purchases pu INNER JOIN products p ON pu.productId = p.id
+WHERE pu.clientUserId = ? AND pu.timestamp BETWEEN ? AND ?
+GROUP BY p.category;
+
+selectSpendingByBusiness:
+SELECT businessId, SUM(amount) AS total
+FROM purchases WHERE clientUserId = ? AND timestamp BETWEEN ? AND ?
+GROUP BY businessId;
+
+-- BudgetGoal
+upsertBudgetGoal:
+INSERT OR REPLACE INTO budget_goals(clientUserId, weeklyLimit, createdAt)
+VALUES (?, ?, ?);
+
+selectBudgetGoalForClient:
+SELECT * FROM budget_goals WHERE clientUserId = ? LIMIT 1;
+
+-- FeedbackReport
+insertFeedbackReport:
+INSERT INTO feedback_reports(clientUserId, targetBusinessId, category, message, isAnonymous, status, createdAt)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+selectFeedbackByClient:
+SELECT * FROM feedback_reports WHERE clientUserId = ? ORDER BY createdAt DESC;
+
+selectAllFeedback:
+SELECT * FROM feedback_reports ORDER BY createdAt DESC;
+
+-- ShopRating
+upsertShopRating:
+INSERT OR REPLACE INTO shop_ratings(businessId, averageRating, ratingCount)
+VALUES (?, ?, ?);
+
+selectShopRatingByBusiness:
+SELECT * FROM shop_ratings WHERE businessId = ?;
+
+selectAllShopRatings:
+SELECT * FROM shop_ratings ORDER BY averageRating DESC;
+
+-- Wholesaler
+insertWholesaler:
+INSERT INTO wholesalers(name, specialty, rating, deliveryEstimate)
+VALUES (?, ?, ?, ?);
+
+selectAllWholesalers:
+SELECT * FROM wholesalers ORDER BY rating DESC;
+
+selectWholesalersByQuery:
+SELECT * FROM wholesalers WHERE name LIKE '%' || ? || '%' OR specialty LIKE '%' || ? || '%';
+
+selectWholesalerById:
+SELECT * FROM wholesalers WHERE id = ?;
+
+-- RestockRequest
+insertRestockRequest:
+INSERT INTO restock_requests(businessId, productId, wholesalerId, quantity, status, requestedAt)
+VALUES (?, ?, ?, ?, ?, ?);
+
+selectRestockRequestsByBusiness:
+SELECT * FROM restock_requests WHERE businessId = ? ORDER BY requestedAt DESC;
+
+updateRestockRequestStatus:
+UPDATE restock_requests SET status = ? WHERE id = ?;
+
+-- StockAdjustment
+insertStockAdjustment:
+INSERT INTO stock_adjustments(productId, businessId, delta, reason, timestamp)
+VALUES (?, ?, ?, ?, ?);
+
+selectStockAdjustmentsByBusiness:
+SELECT * FROM stock_adjustments WHERE businessId = ? ORDER BY timestamp DESC;
+
+selectStockAdjustmentsByProduct:
+SELECT * FROM stock_adjustments WHERE productId = ? ORDER BY timestamp DESC;
+
+selectUnitsSoldInRange:
+SELECT SUM(delta) FROM stock_adjustments WHERE productId = ? AND reason = 'sale' AND timestamp >= ? AND timestamp < ?;
+
+-- ProductAlert
+insertProductAlert:
+INSERT INTO product_alerts(businessId, productId, type, message, severity, isRead, createdAt)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+selectAlertsByBusiness:
+SELECT * FROM product_alerts WHERE businessId = ? ORDER BY createdAt DESC;
+
+selectUnreadAlertsByBusiness:
+SELECT * FROM product_alerts WHERE businessId = ? AND isRead = 0 ORDER BY createdAt DESC;
+
+selectUnreadAlertCount:
+SELECT COUNT(*) FROM product_alerts WHERE businessId = ? AND isRead = 0;
+
+selectUnreadAlertByProduct:
+SELECT * FROM product_alerts WHERE businessId = ? AND productId = ? AND isRead = 0 ORDER BY createdAt DESC LIMIT 1;
+
+markAlertAsRead:
+UPDATE product_alerts SET isRead = 1 WHERE id = ?;
+
+markAllAlertsAsRead:
+UPDATE product_alerts SET isRead = 1 WHERE businessId = ?;
+
+deleteAlert:
+DELETE FROM product_alerts WHERE id = ?;
+
+-- AppNotification
+insertNotification:
+INSERT INTO app_notifications(userId, businessId, type, title, body, actionRoute, isRead, createdAt)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+selectNotificationsByUser:
+SELECT * FROM app_notifications WHERE userId = ? ORDER BY createdAt DESC;
+
+selectUnreadNotificationsByUser:
+SELECT * FROM app_notifications WHERE userId = ? AND isRead = 0 ORDER BY createdAt DESC;
+
+selectUnreadNotificationCount:
+SELECT COUNT(*) FROM app_notifications WHERE userId = ? AND isRead = 0;
+
+selectNotificationsByUserAndTypes:
+SELECT * FROM app_notifications WHERE userId = ? AND type IN ? ORDER BY createdAt DESC;
+
+markNotificationAsRead:
+UPDATE app_notifications SET isRead = 1 WHERE id = ?;
+
+markAllNotificationsAsRead:
+UPDATE app_notifications SET isRead = 1 WHERE userId = ?;
+
+deleteNotification:
+DELETE FROM app_notifications WHERE id = ?;
+
+-- Expense
+insertExpense:
+INSERT INTO expenses(businessId, label, amount, periodStart, periodEnd, createdAt)
+VALUES (?, ?, ?, ?, ?, ?);
+
+selectExpensesByBusiness:
+SELECT * FROM expenses WHERE businessId = ? ORDER BY createdAt DESC;
+
+selectTotalExpensesInRange:
+SELECT SUM(amount) FROM expenses WHERE businessId = ? AND periodStart >= ? AND periodEnd <= ?;
+
+deleteExpense:
+DELETE FROM expenses WHERE id = ?;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Duka "D" letter in white on forest background -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,34 L50,34 C60,34 68,42 68,54 C68,66 60,74 50,74 L34,74 Z M42,42 L42,66 L50,66 C56,66 60,60 60,54 C60,48 56,42 50,42 Z"/>
+    <!-- Small store icon -->
+    <path
+        android:fillColor="#D9A441"
+        android:pathData="M30,78 L78,78 L78,80 L30,80 Z"/>
+</vector>
