@@ -34,7 +34,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build shared XCFramework
-        run: ./gradlew :shared:assembleSharedXCFramework
+        run: ./gradlew :shared:assembleSharedXCFramework -Dorg.gradle.java.home=$JAVA_HOME
 
       - name: Select Xcode
         run: |
@@ -74,7 +74,7 @@ jobs:
 
       # Also rebuild Android APK in same run so both are always in sync
       - name: Build Android APK
-        run: ./gradlew :app:assembleDebug
+        run: ./gradlew :app:assembleDebug -Dorg.gradle.java.home=$JAVA_HOME
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
