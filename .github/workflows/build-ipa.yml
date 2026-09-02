@@ -33,6 +33,14 @@ jobs:
       - name: Grant Gradle execute permission
         run: chmod +x gradlew
 
+      - name: Fix Java home in gradle.properties
+        run: |
+          # Remove any hardcoded org.gradle.java.home from project gradle.properties
+          # so CI uses the JAVA_HOME from setup-java instead
+          sed -i '' '/org\.gradle\.java\.home/d' gradle.properties 2>/dev/null || true
+          echo "JAVA_HOME=$JAVA_HOME"
+          echo "Java home in gradle.properties removed"
+
       - name: Build shared XCFramework
         run: ./gradlew :shared:assembleSharedXCFramework -Dorg.gradle.java.home=$JAVA_HOME
 
