@@ -10,6 +10,9 @@ jobs:
     name: Build iOS Simulator IPA
     runs-on: macos-14   # Apple Silicon Mac — required for iOS builds
 
+    env:
+      JAVA_HOME: ''  # will be set by setup-java
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,32 +22,32 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: gradle    # use setup-java's built-in Gradle caching
 
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-
+      #彻底清除所有旧的 org.gradle.java.home 值
+      - name: Clean all Java home settings
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME"
+          echo "java -version:"
+          java -version
+          # Remove from project gradle.properties if present
+          if [ -f gradle.properties ]; then
+            grep -v 'org\.gradle\.java\.home' gradle.properties > gradle.properties.tmp || true
+            mv gradle.properties.tmp gradle.properties
+          fi
+          # Remove user-level gradle.properties (may have stale sdkman path from cache)
+          rm -f ~/.gradle/gradle.properties
+          # Remove any global gradle.properties
+          rm -f /etc/gradle/gradle.properties 2>/dev/null || true
+          echo "--- gradle.properties after cleanup ---"
+          cat gradle.properties
+          echo "--- done ---"
 
       - name: Grant Gradle execute permission
         run: chmod +x gradlew
 
-      - name: Fix Java home in gradle.properties
-        run: |
-          # Remove hardcoded org.gradle.java.home from ALL gradle.properties files
-          # so CI uses the JAVA_HOME from setup-java instead
-          sed -i '' '/org\.gradle\.java\.home/d' gradle.properties 2>/dev/null || true
-          rm -f ~/.gradle/gradle.properties 2>/dev/null || true
-          mkdir -p ~/.gradle
-          echo "JAVA_HOME=$JAVA_HOME"
-          echo "Cleaned org.gradle.java.home from all gradle.properties files"
-
       - name: Build shared XCFramework
-        run: ./gradlew :shared:assembleSharedXCFramework -Dorg.gradle.java.home=$JAVA_HOME
+        run: ./gradlew :shared:assembleSharedXCFramework --no-daemon
 
       - name: Select Xcode
         run: |
@@ -84,7 +87,7 @@ jobs:
 
       # Also rebuild Android APK in same run so both are always in sync
       - name: Build Android APK
-        run: ./gradlew :app:assembleDebug -Dorg.gradle.java.home=$JAVA_HOME
+        run: ./gradlew :app:assembleDebug --no-daemon
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
