@@ -35,11 +35,13 @@ jobs:
 
       - name: Fix Java home in gradle.properties
         run: |
-          # Remove any hardcoded org.gradle.java.home from project gradle.properties
+          # Remove hardcoded org.gradle.java.home from ALL gradle.properties files
           # so CI uses the JAVA_HOME from setup-java instead
           sed -i '' '/org\.gradle\.java\.home/d' gradle.properties 2>/dev/null || true
+          rm -f ~/.gradle/gradle.properties 2>/dev/null || true
+          mkdir -p ~/.gradle
           echo "JAVA_HOME=$JAVA_HOME"
-          echo "Java home in gradle.properties removed"
+          echo "Cleaned org.gradle.java.home from all gradle.properties files"
 
       - name: Build shared XCFramework
         run: ./gradlew :shared:assembleSharedXCFramework -Dorg.gradle.java.home=$JAVA_HOME
