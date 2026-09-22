@@ -1,0 +1,38 @@
+# Gradle
+.gradle/
+build/
+app/build/
+shared/build/
+admin-portal/build/
+admin-portal/node_modules/
+
+# Built artifacts (APKs are produced by CI / gradle, never committed)
+*.apk
+*.aab
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Android Studio captures
+captures/
+
+# Kotlin/Native
+.kotlin/
+native/
+
+# Local machine-specific config (create your own from the template comments)
+local.properties
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# EAS / Expo local state
+.easignore
+.expo/

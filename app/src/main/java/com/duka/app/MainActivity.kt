@@ -67,6 +67,7 @@ import androidx.compose.material.icons.automirrored.outlined.ReceiptLong
 import androidx.compose.material.icons.outlined.Store
 import androidx.compose.material.icons.outlined.AccountBalanceWallet
 import androidx.compose.material.icons.outlined.Feedback
+import androidx.compose.material.icons.outlined.Explore
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.duka.app.ui.screens.v3.*
 import com.duka.app.ui.screens.v4.*
@@ -105,6 +106,9 @@ class MainActivity : ComponentActivity() {
     @Inject lateinit var appNotificationRepository: com.duka.app.data.repository.AppNotificationRepository
     @Inject lateinit var stockAdjustmentRepository: com.duka.app.data.repository.StockAdjustmentRepository
     @Inject lateinit var expenseRepository: com.duka.app.data.repository.ExpenseRepository
+    // Phase 3 (Explore + client chat)
+    @Inject lateinit var phase3Repository: com.duka.phase3.data.Phase3Repository
+    @Inject lateinit var clientChatService: com.duka.phase3.chat.ClientChatService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,7 +137,9 @@ class MainActivity : ComponentActivity() {
                     productAlertRepository = productAlertRepository,
                     appNotificationRepository = appNotificationRepository,
                     stockAdjustmentRepository = stockAdjustmentRepository,
-                    expenseRepository = expenseRepository
+                    expenseRepository = expenseRepository,
+                    phase3Repository = phase3Repository,
+                    clientChatService = clientChatService
                 )
             }
         }
@@ -165,7 +171,10 @@ fun DukaApp(
     productAlertRepository: com.duka.app.data.repository.ProductAlertRepository,
     appNotificationRepository: com.duka.app.data.repository.AppNotificationRepository,
     stockAdjustmentRepository: com.duka.app.data.repository.StockAdjustmentRepository,
-    expenseRepository: com.duka.app.data.repository.ExpenseRepository
+    expenseRepository: com.duka.app.data.repository.ExpenseRepository,
+    // Phase 3
+    phase3Repository: com.duka.phase3.data.Phase3Repository,
+    clientChatService: com.duka.phase3.chat.ClientChatService
 ) {
     val navController = rememberNavController()
     val sessionViewModel: SessionViewModel = hiltViewModel()
@@ -219,7 +228,7 @@ fun DukaApp(
     )
     // V3/V4: Client bottom bar routes
     val clientBottomBarRoutes = setOf(
-        NavRoutes.CLIENT_DISCOVER, NavRoutes.CLIENT_BUDGET, NavRoutes.CLIENT_FEEDBACK
+        NavRoutes.CLIENT_DISCOVER, NavRoutes.EXPLORE, NavRoutes.CLIENT_BUDGET, NavRoutes.CLIENT_FEEDBACK
     )
     // V3/V4: Government admin bottom bar routes
     val govBottomBarRoutes = setOf(
@@ -578,6 +587,7 @@ fun DukaApp(
                         onNavigateToSettings = { navController.navigate(NavRoutes.SETTINGS) },
                         onNavigateToEmployeeManagement = { navController.navigate(NavRoutes.EMPLOYEE_MANAGEMENT) },
                         onNavigateToAnalytics = { navController.navigate(NavRoutes.ANALYTICS_HUB) },
+                        onNavigateToClientChats = { navController.navigate(NavRoutes.OWNER_CLIENT_CHAT_LIST) },
                         onLogout = { sessionViewModel.logout() }
                     )
                 }
@@ -836,6 +846,79 @@ fun DukaApp(
                         onBack = { navController.popBackStack() }
                     )
                 }
+
+                // === PHASE 3 ROUTES ===
+                // Explore — client-facing business discovery (role-gated like other client routes).
+                composable(NavRoutes.EXPLORE) {
+                    if (sessionState.currentRole != "client") {
+                        LaunchedEffect(Unit) { navController.navigate(NavRoutes.LOGIN) { popUpTo(0) { inclusive = true } } }
+                    } else {
+                        com.duka.phase3.ui.ExploreScreen(
+                            repository = phase3Repository,
+                            userDistrict = "Kigali", // Phase 3 heuristic default; profile district lands in a later pass
+                            onOpenShop = { remoteId ->
+                                navController.navigate(NavRoutes.shopProfileRoute(remoteId))
+                            }
+                        )
+                    }
+                }
+
+                // Shop Profile — opened from an Explore card.
+                composable(
+                    NavRoutes.SHOP_PROFILE,
+                    arguments = listOf(navArgument("shopRemoteId") { type = NavType.StringType })
+                ) { backStackEntry ->
+                    val shopRemoteId = backStackEntry.arguments?.getString("shopRemoteId") ?: ""
+                    com.duka.phase3.ui.ShopProfileScreen(
+                        repository = phase3Repository,
+                        shopRemoteId = shopRemoteId,
+                        onBack = { navController.popBackStack() },
+                        onMessageShop = { id, _ ->
+                            navController.navigate(
+                                NavRoutes.clientChatRoute(id, sessionState.currentUser?.id ?: 0L, "client")
+                            )
+                        }
+                    )
+                }
+
+                // Client↔Owner chat — reachable from Shop Profile (client side)
+                // and from the owner chat list (owner side). The conversation is
+                // keyed by (shop, CLIENT user id); senderRole only sets perspective.
+                composable(
+                    NavRoutes.CLIENT_CHAT,
+                    arguments = listOf(
+                        navArgument("shopRemoteId") { type = NavType.StringType },
+                        navArgument("clientUserId") { type = NavType.LongType },
+                        navArgument("senderRole") { type = NavType.StringType }
+                    )
+                ) { backStackEntry ->
+                    val shopRemoteId = backStackEntry.arguments?.getString("shopRemoteId") ?: ""
+                    val clientUserId = backStackEntry.arguments?.getLong("clientUserId") ?: 0L
+                    val senderRole = backStackEntry.arguments?.getString("senderRole") ?: "client"
+                    com.duka.phase3.ui.ClientChatScreen(
+                        repository = phase3Repository,
+                        service = clientChatService,
+                        shopRemoteId = shopRemoteId,
+                        clientUserId = clientUserId,
+                        senderRole = senderRole,
+                        senderName = sessionState.currentUserName.ifBlank { if (senderRole == "client") "Client" else "Owner" },
+                        onBack = { navController.popBackStack() }
+                    )
+                }
+
+                // Owner chat list — every active client conversation.
+                composable(NavRoutes.OWNER_CLIENT_CHAT_LIST) {
+                    com.duka.phase3.ui.OwnerClientChatListScreen(
+                        repository = phase3Repository,
+                        service = clientChatService,
+                        onBack = { navController.popBackStack() },
+                        onOpenConversation = { shopId, _, clientUserId ->
+                            navController.navigate(
+                                NavRoutes.clientChatRoute(shopId, clientUserId, "owner")
+                            )
+                        }
+                    )
+                }
             }
         }
     }
@@ -947,11 +1030,12 @@ fun EmployeeBottomBar(navController: androidx.navigation.NavController, currentR
     }
 }
 
-// V3/V4: Client bottom bar — 3 tabs: Discover, Spending, Feedback
+// V3/V4: Client bottom bar — now 4 tabs: Discover, Explore (Phase 3), Spending, Feedback
 @Composable
 fun ClientBottomBar(navController: androidx.navigation.NavController, currentRoute: String?) {
     val items = listOf(
         Triple(NavRoutes.CLIENT_DISCOVER, "Discover", Icons.Outlined.Store),
+        Triple(NavRoutes.EXPLORE, "Explore", Icons.Outlined.Explore),
         Triple(NavRoutes.CLIENT_BUDGET, "Spending", Icons.Outlined.AccountBalanceWallet),
         Triple(NavRoutes.CLIENT_FEEDBACK, "Feedback", Icons.Outlined.Feedback)
     )

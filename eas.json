@@ -1,0 +1,26 @@
+{
+  "//": [
+    "Duka build profiles for testable APK distribution.",
+    "NOTE: Duka is a native Kotlin/Jetpack Compose app built with Gradle (app/build.gradle.kts,",
+    "applicationId = com.duka.app) — not an Expo/React Native project, so `eas build` cannot",
+    "compile it as-is. This file follows the requested EAS profile shape so it is ready if the",
+    "project gains an Expo shell; today the equivalent cloud path is .github/workflows and the",
+    "local path is: ./gradlew :app:assembleDebug  (profile 'preview' == APK, not AAB)."
+  ],
+  "cli": { "version": ">= 5.0.0" },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": { "buildType": "apk" }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": { "buildType": "apk" }
+    },
+    "production": {
+      "android": { "buildType": "app-bundle" }
+    }
+  },
+  "submit": { "production": {} }
+}

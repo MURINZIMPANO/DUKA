@@ -36,7 +36,7 @@ object DatabaseModule {
             DukaDatabase::class.java,
             "duka.db"
         )
-            .addMigrations(DukaDatabase.MIGRATION_3_4, DukaDatabase.MIGRATION_4_5, DukaDatabase.MIGRATION_5_6)
+            .addMigrations(DukaDatabase.MIGRATION_3_4, DukaDatabase.MIGRATION_4_5, DukaDatabase.MIGRATION_5_6, DukaDatabase.MIGRATION_6_7, DukaDatabase.MIGRATION_7_8)
             .build()
     }
 

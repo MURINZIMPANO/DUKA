@@ -6,6 +6,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.duka.app.data.local.dao.*
 import com.duka.app.data.local.entity.*
+// Phase 3 entities/DAOs join the existing wildcard imports above (same packages).
 
 @Database(
     entities = [
@@ -32,9 +33,15 @@ import com.duka.app.data.local.entity.*
         StockAdjustment::class,
         ProductAlert::class,
         AppNotification::class,
-        Expense::class
+        Expense::class,
+        // Phase 3 entities (Explore + client chat) — additive, see MIGRATION_6_7
+        ExploreShop::class,
+        ClientChatMessage::class,
+        com.duka.phase3.data.RemoteShopProduct::class,
+        // Phase 4 entities (client purchase flow) — additive, see MIGRATION_7_8
+        com.duka.phase4.data.ClientPurchase::class
     ],
-    version = 6,
+    version = 8,
     exportSchema = false
 )
 abstract class DukaDatabase : RoomDatabase() {
@@ -63,6 +70,14 @@ abstract class DukaDatabase : RoomDatabase() {
     abstract fun productAlertDao(): ProductAlertDao
     abstract fun appNotificationDao(): AppNotificationDao
     abstract fun expenseDao(): ExpenseDao
+
+    // Phase 3 DAOs
+    abstract fun exploreShopDao(): ExploreShopDao
+    abstract fun clientChatMessageDao(): ClientChatMessageDao
+    abstract fun remoteShopProductDao(): com.duka.phase3.data.RemoteShopProductDao
+
+    // Phase 4 DAOs
+    abstract fun clientPurchaseDao(): com.duka.phase4.data.ClientPurchaseDao
 
     companion object {
         /**
@@ -155,6 +170,85 @@ abstract class DukaDatabase : RoomDatabase() {
         val MIGRATION_5_6 = object : Migration(5, 6) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("ALTER TABLE users ADD COLUMN isDeleted INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
+        /**
+         * Migration 6 → 7: Phase 3 — Explore cache + Owner↔Client chat.
+         *
+         * Purely additive: two NEW tables. No existing table, column, or row is
+         * modified, so all pre-existing features are unaffected.
+         */
+        val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS explore_shops (
+                        remoteId TEXT NOT NULL PRIMARY KEY,
+                        name TEXT NOT NULL,
+                        category TEXT NOT NULL,
+                        district TEXT NOT NULL,
+                        coverImageUrl TEXT NOT NULL,
+                        ratingAverage REAL NOT NULL,
+                        ratingCount INTEGER NOT NULL,
+                        avgPrice REAL NOT NULL,
+                        salesVelocity REAL NOT NULL,
+                        productCount INTEGER NOT NULL,
+                        registeredAt INTEGER NOT NULL,
+                        isFlagged INTEGER NOT NULL,
+                        syncedAt INTEGER NOT NULL
+                    )
+                """.trimIndent())
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS client_chat_messages (
+                        remoteId TEXT NOT NULL PRIMARY KEY,
+                        conversationId TEXT NOT NULL,
+                        shopId TEXT NOT NULL,
+                        clientUserId INTEGER NOT NULL,
+                        senderRole TEXT NOT NULL,
+                        participantType TEXT NOT NULL,
+                        senderLabel TEXT NOT NULL,
+                        text TEXT NOT NULL,
+                        timestamp INTEGER NOT NULL,
+                        pendingPush INTEGER NOT NULL
+                    )
+                """.trimIndent())
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS remote_shop_products (
+                        remoteId TEXT NOT NULL PRIMARY KEY,
+                        shopId TEXT NOT NULL,
+                        name TEXT NOT NULL,
+                        price REAL NOT NULL,
+                        category TEXT NOT NULL
+                    )
+                """.trimIndent())
+            }
+        }
+
+        /**
+         * Migration 7 → 8: Phase 4 — cross-device client purchases.
+         *
+         * Purely additive: one NEW table. No existing table, column, or row is
+         * modified, so all pre-existing features are unaffected. The server-side
+         * counterpart is supabase/migration-phase4.sql (client_sales).
+         */
+        val MIGRATION_7_8 = object : Migration(7, 8) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS client_purchases (
+                        remoteId TEXT NOT NULL PRIMARY KEY,
+                        shopRemoteId TEXT NOT NULL,
+                        shopName TEXT NOT NULL,
+                        productName TEXT NOT NULL,
+                        unitPrice REAL NOT NULL,
+                        quantity INTEGER NOT NULL,
+                        total REAL NOT NULL,
+                        receiptNumber TEXT NOT NULL,
+                        clientUserId INTEGER NOT NULL,
+                        timestamp INTEGER NOT NULL,
+                        pendingPush INTEGER NOT NULL,
+                        importedSaleId INTEGER NOT NULL
+                    )
+                """.trimIndent())
             }
         }
     }

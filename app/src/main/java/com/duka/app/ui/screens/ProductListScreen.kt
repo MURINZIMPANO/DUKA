@@ -85,6 +85,29 @@ fun ProductListScreen(
     // Delete state
     var productToDelete by remember { mutableStateOf<com.duka.app.data.local.entity.Product?>(null) }
 
+    // === Phase 3: Category quick-start offer (additive) ===
+    // Shown once per session when the shop has NO products and its category has
+    // a starter template. Declining inserts nothing; existing behaviour otherwise.
+    var showQuickStart by remember { mutableStateOf(false) }
+    var quickStartChecked by remember { mutableStateOf(false) }
+    LaunchedEffect(allProducts.isEmpty(), business?.type) {
+        if (allProducts.isEmpty() && !business?.type.isNullOrBlank() && !quickStartChecked) {
+            quickStartChecked = true
+            if (com.duka.phase3.data.CategoryTemplates.hasTemplate(business?.type ?: "")) {
+                showQuickStart = true
+            }
+        }
+    }
+    if (showQuickStart && businessId > 0L) {
+        com.duka.phase3.ui.CategoryQuickStartDialog(
+            category = business?.type ?: "",
+            businessId = businessId,
+            productRepository = productRepository,
+            onDismiss = { showQuickStart = false }
+        )
+    }
+    // === End Phase 3 hook ===
+
     val filteredProducts = remember(allProducts, searchQuery, selectedCategory) {
         allProducts.filter { product ->
             val matchesSearch = searchQuery.isBlank() ||

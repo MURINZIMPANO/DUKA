@@ -68,4 +68,14 @@ object NavRoutes {
     const val EMPLOYEE_NOTIFICATIONS = "employee_notifications"
 
     fun editProductRoute(productId: Long) = "edit_product/$productId"
+
+    // === Phase 3 routes (Explore, Shop Profile, client chat) ===
+    const val EXPLORE = "explore"
+    const val SHOP_PROFILE = "shop_profile/{shopRemoteId}"
+    const val CLIENT_CHAT = "client_chat/{shopRemoteId}/{clientUserId}/{senderRole}"
+    const val OWNER_CLIENT_CHAT_LIST = "owner_client_chat_list"
+
+    fun shopProfileRoute(shopRemoteId: String) = "shop_profile/$shopRemoteId"
+    fun clientChatRoute(shopRemoteId: String, clientUserId: Long, senderRole: String) =
+        "client_chat/$shopRemoteId/$clientUserId/$senderRole"
 }

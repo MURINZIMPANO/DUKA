@@ -59,6 +59,7 @@ import com.duka.app.ui.theme.OnSurfaceVariant
 import com.duka.app.ui.theme.White
 import androidx.compose.ui.res.stringResource
 import com.duka.app.R
+import androidx.compose.material.icons.outlined.Forum
 
 @Composable
 fun MoreScreen(
@@ -76,6 +77,8 @@ fun MoreScreen(
     onNavigateToEmployeeManagement: () -> Unit = {},
     // V6 Analytics
     onNavigateToAnalytics: () -> Unit = {},
+    // Phase 3 — Owner↔Client chat list
+    onNavigateToClientChats: () -> Unit = {},
     onLogout: () -> Unit
 ) {
     Scaffold(
@@ -101,6 +104,15 @@ fun MoreScreen(
                 subtitle = stringResource(R.string.more_chat_subtitle),
                 iconTint = Forest,
                 onClick = onNavigateToChat
+            )
+
+            // Phase 3 — Client chats (Owner↔Client, cross-device)
+            MoreMenuItem(
+                icon = Icons.Outlined.Forum,
+                title = "Client chats",
+                subtitle = "Messages from shoppers about your shop",
+                iconTint = Forest,
+                onClick = onNavigateToClientChats
             )
 
             MoreMenuItem(
