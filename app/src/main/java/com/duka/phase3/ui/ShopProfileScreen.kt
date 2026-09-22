@@ -1,6 +1,7 @@
 package com.duka.phase3.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -59,7 +60,9 @@ fun ShopProfileScreen(
     repository: com.duka.phase3.data.Phase3Repository,
     shopRemoteId: String,
     onBack: () -> Unit,
-    onMessageShop: (shopRemoteId: String, shopName: String) -> Unit
+    onMessageShop: (shopRemoteId: String, shopName: String) -> Unit,
+    // Phase 4: optional purchase entry point; default null keeps every existing caller compiling.
+    onBuyProduct: ((product: com.duka.phase3.data.RemoteShopProduct) -> Unit)? = null
 ) {
     val shop by repository.observeShop(shopRemoteId).collectAsState(initial = null)
     val products by repository.observeShopProducts(shopRemoteId).collectAsState(initial = emptyList())
@@ -166,7 +169,15 @@ fun ShopProfileScreen(
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp),
+                            .padding(horizontal = 16.dp)
+                            // Phase 4: tap a product to open the purchase sheet (no-op when unset).
+                            .then(
+                                if (onBuyProduct != null) {
+                                    Modifier.clickable { onBuyProduct(product) }
+                                } else {
+                                    Modifier
+                                }
+                            ),
                         shape = RoundedCornerShape(12.dp),
                         colors = CardDefaults.cardColors(containerColor = White),
                         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
