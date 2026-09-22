@@ -78,4 +78,9 @@ object NavRoutes {
     fun shopProfileRoute(shopRemoteId: String) = "shop_profile/$shopRemoteId"
     fun clientChatRoute(shopRemoteId: String, clientUserId: Long, senderRole: String) =
         "client_chat/$shopRemoteId/$clientUserId/$senderRole"
+
+    // === Phase 4 routes (client purchase flow + instant EBM receipt) ===
+    const val CLIENT_PURCHASE_RECEIPT = "client_purchase_receipt/{remoteId}"
+
+    fun clientPurchaseReceiptRoute(remoteId: String) = "client_purchase_receipt/$remoteId"
 }

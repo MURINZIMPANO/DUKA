@@ -77,6 +77,8 @@ import com.duka.app.ui.theme.Mist
 import com.duka.app.ui.theme.OnSurfaceVariant
 import com.duka.app.ui.theme.White
 import com.duka.app.viewmodel.SessionViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -109,6 +111,8 @@ class MainActivity : ComponentActivity() {
     // Phase 3 (Explore + client chat)
     @Inject lateinit var phase3Repository: com.duka.phase3.data.Phase3Repository
     @Inject lateinit var clientChatService: com.duka.phase3.chat.ClientChatService
+    // Phase 4 (client purchase flow + instant EBM receipt)
+    @Inject lateinit var clientPurchaseSyncService: com.duka.phase4.sync.ClientPurchaseSyncService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,8 +143,8 @@ class MainActivity : ComponentActivity() {
                     stockAdjustmentRepository = stockAdjustmentRepository,
                     expenseRepository = expenseRepository,
                     phase3Repository = phase3Repository,
-                    clientChatService = clientChatService
-                )
+                    clientChatService = clientChatService,
+                    clientPurchaseSyncService = clientPurchaseSyncService
             }
         }
     }
@@ -174,7 +178,9 @@ fun DukaApp(
     expenseRepository: com.duka.app.data.repository.ExpenseRepository,
     // Phase 3
     phase3Repository: com.duka.phase3.data.Phase3Repository,
-    clientChatService: com.duka.phase3.chat.ClientChatService
+    clientChatService: com.duka.phase3.chat.ClientChatService,
+    // Phase 4
+    clientPurchaseSyncService: com.duka.phase4.sync.ClientPurchaseSyncService
 ) {
     val navController = rememberNavController()
     val sessionViewModel: SessionViewModel = hiltViewModel()
@@ -214,6 +220,35 @@ fun DukaApp(
             navController.navigate(target) {
                 popUpTo(0) { inclusive = true }
                 launchSingleTop = true
+            }
+        }
+    }
+
+    // === Phase 4 — owner-side client purchase import (additive, no UI change) ===
+    // Owners poll for client purchases made remotely; each becomes a local Sale
+    // (source = "client") via the SAME repositories Employee Sell uses, plus a
+    // stock decrement and a system-style chat notice. Client devices retry any
+    // pending purchase pushes. Purely additive; no existing screen is touched.
+    // (Role read locally — isOwner is declared further down and can't be referenced here.)
+    val phase4IsOwner = sessionState.currentRole == "owner"
+    if (phase4IsOwner) {
+        androidx.compose.runtime.LaunchedEffect(sessionState.currentRole) {
+            val businessId = sessionManager.getBusinessId()
+            while (isActive) {
+                try {
+                    clientPurchaseSyncService.pullAndImportForOwner(businessId)
+                } catch (_: Exception) { /* visible via syncState; never crash the app */ }
+                delay(15_000)
+            }
+        }
+    } else {
+        // Client devices: complete any purchase pushes that were queued offline.
+        androidx.compose.runtime.LaunchedEffect(sessionState.currentRole) {
+            while (isActive) {
+                try {
+                    clientPurchaseSyncService.retryPending()
+                } catch (_: Exception) { /* state stays visible in syncState */ }
+                delay(30_000)
             }
         }
     }
@@ -869,6 +904,14 @@ fun DukaApp(
                     arguments = listOf(navArgument("shopRemoteId") { type = NavType.StringType })
                 ) { backStackEntry ->
                     val shopRemoteId = backStackEntry.arguments?.getString("shopRemoteId") ?: ""
+
+                    // Phase 4: purchase sheet state, keyed to this shop's products.
+                    var purchaseProduct by remember {
+                        mutableStateOf<com.duka.phase3.data.RemoteShopProduct?>(null)
+                    }
+                    val shopForSheet by phase3Repository.observeShop(shopRemoteId)
+                        .collectAsState(initial = null)
+
                     com.duka.phase3.ui.ShopProfileScreen(
                         repository = phase3Repository,
                         shopRemoteId = shopRemoteId,
@@ -877,8 +920,25 @@ fun DukaApp(
                             navController.navigate(
                                 NavRoutes.clientChatRoute(id, sessionState.currentUser?.id ?: 0L, "client")
                             )
-                        }
+                        },
+                        onBuyProduct = { product -> purchaseProduct = product }
                     )
+
+                    // Phase 4 purchase sheet — opens from any product card tap.
+                    purchaseProduct?.let { product ->
+                        com.duka.phase4.ui.ClientPurchaseSheet(
+                            product = product,
+                            shopRemoteId = shopRemoteId,
+                            shopName = shopForSheet?.name ?: "Shop",
+                            clientUserId = sessionState.currentUser?.id ?: 0L,
+                            service = clientPurchaseSyncService,
+                            onDismiss = { purchaseProduct = null },
+                            onPurchaseRecorded = { remoteId, _ ->
+                                purchaseProduct = null
+                                navController.navigate(NavRoutes.clientPurchaseReceiptRoute(remoteId))
+                            }
+                        )
+                    }
                 }
 
                 // Client↔Owner chat — reachable from Shop Profile (client side)
@@ -916,6 +976,26 @@ fun DukaApp(
                             navController.navigate(
                                 NavRoutes.clientChatRoute(shopId, clientUserId, "owner")
                             )
+                        }
+                    )
+                }
+
+                // === PHASE 4 ROUTES ===
+                // Instant EBM receipt after a client purchase (see ClientPurchaseSheet).
+                composable(
+                    NavRoutes.CLIENT_PURCHASE_RECEIPT,
+                    arguments = listOf(navArgument("remoteId") { type = NavType.StringType })
+                ) { backStackEntry ->
+                    val remoteId = backStackEntry.arguments?.getString("remoteId") ?: ""
+                    com.duka.phase4.ui.ClientPurchaseReceiptScreen(
+                        purchaseRemoteId = remoteId,
+                        service = clientPurchaseSyncService,
+                        ebmGateway = ebmGateway,
+                        onDone = {
+                            navController.navigate(NavRoutes.EXPLORE) {
+                                popUpTo(0) { inclusive = true }
+                                launchSingleTop = true
+                            }
                         }
                     )
                 }
