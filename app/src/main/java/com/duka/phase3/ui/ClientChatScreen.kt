@@ -218,7 +218,8 @@ private fun ChatBubble(msg: ClientChatMessage, isMine: Boolean) {
                 .padding(horizontal = 12.dp, vertical = 8.dp)
         ) {
             Text(msg.text, color = if (isMine) White else Ink, fontSize = 14.sp)
-            Spacer(Modifier.height(2.dp))            Text(
+            Spacer(Modifier.height(2.dp))
+            Text(
                 (if (isMine) "You" else msg.senderLabel) +
                         if (msg.pendingPush) " · not delivered yet" else "",
                 color = if (isMine) White.copy(alpha = 0.7f) else OnSurfaceVariant,

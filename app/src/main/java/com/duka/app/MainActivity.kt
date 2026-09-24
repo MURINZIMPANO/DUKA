@@ -145,6 +145,7 @@ class MainActivity : ComponentActivity() {
                     phase3Repository = phase3Repository,
                     clientChatService = clientChatService,
                     clientPurchaseSyncService = clientPurchaseSyncService
+                )
             }
         }
     }
