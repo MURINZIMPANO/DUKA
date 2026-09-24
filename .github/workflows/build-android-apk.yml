@@ -34,6 +34,21 @@ jobs:
           set -o pipefail
           ./gradlew :app:assembleDebug --no-daemon 2>&1 | tee build-debug.log
 
+      - name: Publish build diagnostics
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '### Gradle build output'
+            echo '```text'
+            if [ -f build-debug.log ]; then
+              cat build-debug.log
+            else
+              echo 'Gradle did not produce build-debug.log'
+            fi
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Upload build log
         if: always()
         uses: actions/upload-artifact@v4
