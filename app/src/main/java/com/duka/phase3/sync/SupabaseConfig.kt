@@ -14,7 +14,7 @@ object SupabaseConfig {
     const val URL: String = "https://YOUR-PROJECT-ref.supabase.co"
     const val ANON_KEY: String = "YOUR-SUPABASE-ANON-KEY"
 
-    const val IS_CONFIGURED: Boolean =
+    val IS_CONFIGURED: Boolean =
         URL.startsWith("https://") && !URL.contains("YOUR-PROJECT") &&
                 !ANON_KEY.contains("YOUR-SUPABASE")
 
