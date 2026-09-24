@@ -49,6 +49,17 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Annotate build failures
+        if: always()
+        shell: bash
+        run: |
+          if [ -f build-debug.log ]; then
+            while IFS= read -r line; do
+              escaped=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r/%0D/g; s/:/%3A/g')
+              printf '::error::%s\n' "$escaped"
+            done < <(grep -E '^(e:|FAILURE:|Execution failed|What went wrong:|> Task .*FAILED)' build-debug.log || true)
+          fi
+
       - name: Upload build log
         if: always()
         uses: actions/upload-artifact@v4
